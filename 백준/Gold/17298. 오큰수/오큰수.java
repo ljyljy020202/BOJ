@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        Stack<Integer> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         Stack<Integer> idx = new Stack<>();
         int n = Integer.parseInt(br.readLine());
         String input = br.readLine();
@@ -21,30 +20,35 @@ public class Main {
         while (st.hasMoreTokens()) {
             tmp[j++] = Integer.parseInt(st.nextToken());
         }
-        // stack1에 순서 거꾸로 push
-        for(int i=n-1;i>=0;i--){
-            stack1.push(tmp[i]);
-        }
 
+        
+        int cnt=0;  
 
+        // tmp[0]을 스택에 넣고 idx에 0을 push함
+        stack.push(tmp[cnt]);
+        idx.push(cnt);
+        cnt++;
 
-        stack2.push(stack1.pop());
-        idx.push(n-stack1.size()-1);
-
-        while(!stack1.empty()){
-            int num = stack1.pop();
-            while(!stack2.empty() && stack2.peek()<num){
-                stack2.pop();
+        // cnt가 n보다 작을 동안
+        // tmp[cnt]가 stack의 맨 위 값보다 큰지 확인하고, 크면 stack에서 pop해서 배열에 tmp[cnt]를 저장하고,
+        // 그렇지 않다면 tmp[cnt]를 stack에 push하는 것을 반복함
+        while(cnt<n){
+            int num = tmp[cnt];
+            while(!stack.empty() && stack.peek()<num){
+                stack.pop();
                 tmp[idx.pop()] = num;
             }
-            stack2.push(num);
-            idx.push(n-stack1.size()-1);
+            stack.push(num);
+            idx.push(cnt);
+            cnt++;
         }
-        while(!stack2.empty()){
-            stack2.pop();
+        // stack에 남은 요소들은 오큰수가 존재하지 않는 것들이므로 배열의 해당 위치에 -1을 저장함
+        while(!stack.empty()){
+            stack.pop();
             tmp[idx.pop()]=-1;
         }
 
+        // 출력
         for(int i=0;i<n;i++){
             sb.append(tmp[i]+" ");
         }
