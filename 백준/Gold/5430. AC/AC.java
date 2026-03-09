@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -19,7 +20,7 @@ public class Main {
             int n = Integer.parseInt(br.readLine());
             st = new StringTokenizer(br.readLine(), "[],");
 
-            deq = new ArrayDeque<>();
+            deq = new LinkedList<>();
             for(int i=0; i<n; i++)
                 deq.add(Integer.parseInt(st.nextToken()));
 
