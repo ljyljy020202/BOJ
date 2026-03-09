@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
         Deque<Integer> deq;
 
         int t = Integer.parseInt(br.readLine());
@@ -18,11 +17,12 @@ public class Main {
         while(t-->0){
             String funcList = br.readLine();
             int n = Integer.parseInt(br.readLine());
-            st = new StringTokenizer(br.readLine(), "[],");
+            String tmp = br.readLine();
+            String[] arr = tmp.substring(1, tmp.length()-1).split(",");
 
             deq = new LinkedList<>();
             for(int i=0; i<n; i++)
-                deq.add(Integer.parseInt(st.nextToken()));
+                deq.add(Integer.parseInt(arr[i]));
 
             boolean reversed = false;
             boolean error = false;
