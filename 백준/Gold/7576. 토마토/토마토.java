@@ -21,7 +21,6 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int n = Integer.parseInt(st.nextToken());
         graph = new int[n][m];
-        boolean[][] visited = new boolean[n][m];
 
         for(int i=0;i<n;i++){
             st = new StringTokenizer(br.readLine());
@@ -36,7 +35,6 @@ public class Main {
             for(int j=0;j<m;j++){
                 if(graph[i][j]==1){
                     q.offer(new Node(j,i,0));
-                    visited[i][j] = true;
                 }
             }
         }
@@ -56,12 +54,10 @@ public class Main {
                 int nx = x+dx[i];
                 int ny = y+dy[i];
                 if(nx>=0 && nx<m && ny>=0 && ny<n
-                        && !visited[ny][nx]
                         && graph[ny][nx]==0
                 ){
                     q.offer(new Node(nx,ny,day+1));
                     graph[ny][nx] = 1;
-                    visited[ny][nx] = true;
                 }
             }
         }
