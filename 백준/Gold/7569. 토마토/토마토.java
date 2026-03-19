@@ -9,7 +9,6 @@ import static java.lang.Math.max;
 
 public class Main {
     static int[][][] graph;
-    static boolean[][][] visited;
     static Queue<Node> q;
     static int[] dx = new int[]{1,-1,0,0,0,0};
     static int[] dy = new int[]{0,0,1,-1,0,0};
@@ -23,7 +22,6 @@ public class Main {
         int h = Integer.parseInt(st.nextToken());
 
         graph = new int[h][n][m];
-        visited = new boolean[h][n][m];
 
         // drawing
         for(int i=0;i<h;i++){
@@ -42,7 +40,6 @@ public class Main {
                 for(int k=0;k<m;k++)
                     if(graph[i][j][k]==1){
                         q.offer(new Node(k,j,i,0));
-                        visited[i][j][k] = true;
                     }
         int maxDay = bfs();
 
@@ -71,10 +68,8 @@ public class Main {
                 if(nx>=0 && nx<graph[0][0].length
                         && ny>=0 && ny<graph[0].length
                         && nz>=0 && nz<graph.length
-                        && !visited[nz][ny][nx]
                         && graph[nz][ny][nx]==0
                 ){
-                    visited[nz][ny][nx] = true;
                     graph[nz][ny][nx] = 1;
                     q.offer(new Node(nx,ny,nz,day+1));
                 }
