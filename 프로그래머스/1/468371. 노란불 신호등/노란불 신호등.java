@@ -10,11 +10,6 @@ class Solution {
             cycles[i] = sum;
         }
         
-        int cycle_gcd = 0;
-        for(int i=0; i<cycles.length; i++){
-            cycle_gcd = gcd(cycle_gcd, cycles[i]);
-        }
-        
         int cycle_lcm = 1;
         for(int i=0; i<cycles.length; i++){
             cycle_lcm = lcm(cycle_lcm, cycles[i]);
